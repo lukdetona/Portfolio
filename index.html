@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        /* Estilo do botão "hamburguer" */
+        .openbtn {
+            cursor: pointer;
+            position: absolute;
+            margin-left: 10px;
+            font-size: 24px; /* Tamanho do ícone */
+            line-height: 50px; /* Centralizar verticalmente */
+            color: white; /* Cor do ícone */
+        }
+
+        .openbtn:hover {
+            color: #bbb;
+        }
+
+        .content {
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #fundo2 {
+            color: #fff;
+            position: absolute;
+            top: 130%;
+            left: 50%;
+            width: 60%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-color: #555;
+            border-radius: 9px;
+        }
+
+        #foto {
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Ícone do hamburguer -->
+<div class="openbtn" onclick="toggleNav()">&#9776;</div>
+
+<!-- Barra lateral -->
+<div id="mySidebar" class="sidebar">
+    <a href="sobre.html">sobre mim</a>
+    <a href="projetos.html">projetos</a>
+    <a href="complemento.html">cursos complementares</a>
+   
+    <br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    
+    version 0.0.1
+</div>
+
+<!-- Conteúdo principal -->
+<div class="content" onclick="closeNav()">
+    <img src="fotor_2023-10-17_11_44_15-fotor-20231017114534.png" id="foto">
+    <h1>Lucas Gabriel Freitas Queiroz</h1>
+    <p>Olá, sou Lucas Gabriel Freitas Queiroz, e estou entusiasmado para compartilhar um pouco sobre mim e meus projetos anteriores.
+
+        Me formei na escola recentemente e estou cursando o SENAI, onde tive a oportunidade de participar de vários projetos na área de tecnologia. Esses projetos me ajudaram a desenvolver habilidades essenciais, como programação, eletrônica e automação, que estou ansioso para aplicar no mercado de trabalho.
+        
+        Minha paixão pela tecnologia e a busca por novos desafios me levaram a considerar a possibilidade de trabalhar no exterior. A ideia de morar em outro país, imergir em uma cultura diferente e expandir meus horizontes profissionais é muito empolgante para mim.
+        
+        Atualmente, moro em Ribeirão das Neves, mas estou disposto a seguir oportunidades onde quer que elas me levem. Acredito que a tecnologia é uma área em constante crescimento, e estou determinado a contribuir de forma significativa nesse setor.
+        
+        Se você tiver mais perguntas ou precisar de informações adicionais sobre meus projetos passados ou objetivos futuros, fique à vontade para perguntar. Estou ansioso para embarcar nessa jornada emocionante na área de tecnologia e em direção a novas aventuras em um país estrangeiro.</p>
+</div>
+<div id="fundo2">
+    <div style="display: inline-block; margin-right: 20px;">
+        <a href="https://www.linkedin.com/in/lucas-gabriel-freitas-queiroz-847a0b287/">
+            <img src="linkedin.png" width="30%">
+        </a>
+    </div>
+    <div style="display: inline-block;">
+        <a href="https://github.com/lukdetona">
+            <img src="github.png" width="30%">
+        </a> 
+    </div>
+</div>
+
+
+
+<script>
+function toggleNav() {
+    var sidebar = document.getElementById("mySidebar");
+
+    if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+    } else {
+        sidebar.style.width = "250px";
+    }
+}
+
+function closeNav() {
+    var sidebar = document.getElementById("mySidebar");
+
+    if (sidebar.style.width === "250px") {
+        sidebar.style.width = "0";
+    }
+}
+</script>
+
+</body>
+</html>

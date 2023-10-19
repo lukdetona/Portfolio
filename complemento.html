@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: gray;
+            text-align: center; /* Centralizar o texto horizontalmente */
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .projects{
+            position: relative;
+            right: 45%;
+        }
+
+        .project-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .project {
+            margin: 10px;
+            text-align: center;
+            width: 200px; /* Defina a largura desejada */
+            height: auto; /* Defina a altura desejada (igual à largura para fazer um quadrado) */
+            background-color: #f0f0f0; /* Cor de fundo (opcional) */
+            text-align: center; /* Centralize o texto horizontalmente */
+            line-height: 20px; /* Centralize o texto verticalmente (ajuste de acordo com a altura) */
+            border-radius: 10%;
+            color: black;
+        }
+
+        .project a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .project p {
+            font-size: 14px;
+            color: black;
+        }
+
+        .project img {
+            width: 100px;
+        }
+
+        #voltar {
+            height: 50px;
+            width: 50px;
+           
+        }
+
+        #conteudo{
+            display: flex; /* Usar display flex para alinhar elementos em linha */
+            align-items: center; /* Alinhar verticalmente no centro */
+            justify-content: center; /* Alinhar horizontalmente no centro */
+            height: 100vh; /* 100% da altura da viewport */
+        }
+
+        #foto {
+            max-width: 50%; /* Largura máxima da imagem */
+            margin-right: 20px; /* Espaço entre a imagem e o texto */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">
+            <img src="back_arrow_icon_134660.png" id="voltar">
+        </a>
+        
+        
+      <h1 class="projects">formações</h1>
+    </div>
+    <div class="project-container">
+        <div id="conteudo">
+            <div>
+            <img src="JIsVX2ddCw3u6dedHDw1XVQjzTuCN15l3M91SwAVoxM.webp" id="foto">
+        </div>
+            
+            <p>Não temos nada ainda.
+                aguarde ate ele terminar os cursos dele, se ele lembrar
+            </p>
+        </div>
+    </div>
+</body>
+</html>

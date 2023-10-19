@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Excesso de Velocidade</title>
+    <style>
+
+        .titulo{
+                    position: relative;
+                    left: 35%;
+                    top: 2%;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: darkred;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="titulo">
+<h1>LISTAGEM DO DETRAN</h1>
+    </div>
+
+    <label for="maxima">Digite a velocidade máxima permitida pela via: </label>
+    <input type="number" name="maxima" id="maxima" placeholder="Digite a velocidade máxima aqui" required><br><br>
+
+    <label for="velocidade">Digite a velocidade do carro: </label>
+    <input type="number" name="velocidade" id="velocidade" placeholder="Digite a velocidade do carro" required><br><br>
+
+    <label for="nomeCondutor">Nome do Condutor:</label>
+    <input type="text" id="nomeCondutor" placeholder="Digite o nome do condutor">
+
+    <label for="numeroHabilitacao">Número da Habilitação do Condutor:</label>
+    <input type="text" id="numeroHabilitacao" placeholder="Digite o número da habilitação do condutor"><br>
+    
+
+    <button id="verificar">Verificar</button>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("verificar").addEventListener("click", function() {
+            var maxima = parseFloat(document.getElementById("maxima").value);
+            var velocidade = parseFloat(document.getElementById("velocidade").value);
+            
+            var excessoVelocidade = velocidade - maxima;
+
+            var resultado = "";
+            var valorMulta = 0;
+            var pontuacao = 0;
+            var nomeCondutor = document.getElementById('nomeCondutor').value;
+            var numeroHabilitacao = document.getElementById('numeroHabilitacao').value;
+
+            if(excessoVelocidade <= 7) {
+                resultado = "Parabéns, " + nomeCondutor + ", você está dentro do limite :)";
+            } else if  (excessoVelocidade <= 0.2 * maxima) {
+                valorMulta = 150; 
+                pontuacao = 5;
+                resultado = "Advertência - Acima de 7 km/h. Multa de R$" + valorMulta + ", com " + pontuacao + " pontos na CNH.";
+            } else if (excessoVelocidade <= 0.5 * maxima) {
+                valorMulta = 300; 
+                pontuacao = 7; 
+                resultado = "Autuado. Infração Grave. Multa de R$" + valorMulta + ", com " + pontuacao + " pontos na CNH.";
+            } else {
+                valorMulta = 500; 
+                pontuacao = 10;
+                resultado = "Autuado. Infração Gravíssima. Penalidade de suspensão do direito de dirigir. Multa de R$" + valorMulta + ", com " + pontuacao + " pontos na CNH.";
+            }
+
+            resultado += `<br>Pontuação na Carteira do Condutor: ${nomeCondutor} (Habilitação ${numeroHabilitacao}): ${pontuacao}`;
+
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = resultado;
+        });
+    </script>
+</body>
+</html>

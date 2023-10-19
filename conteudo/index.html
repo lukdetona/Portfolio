@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio de Pobres</title>
+
+    <style>
+        body {
+            background-color: #040431; 
+            color: white; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    
+        h1 {
+            color: #FFFFFF; 
+        }
+    
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+    
+        button {
+            background-color: #333; 
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #555; 
+        }
+    
+        #comida {
+            width: 100%;
+            padding: 5px;
+        }
+    
+        select {
+            width: 100%;
+            padding: 5px;
+        }
+    
+        #btnExcluir, #btnEditar {
+            background-color: #333; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        #btnExcluir:hover, #btnEditar:hover {
+            background-color: #555; 
+        }
+    
+        #saida {
+            position: fixed;
+            position: absolute;
+            width: 100%;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        table, th, td {
+            border: 1px solid #333; 
+        }
+    
+        th, td {
+            padding: 8px;
+            text-align: left;
+            background-color: #333; 
+            color: white;
+        }
+    
+        th {
+            background-color: #020231; 
+        }
+    </style>
+    
+</head>
+
+<body>
+    <h1>Cardápix</h1>
+    <button type="button">
+        <a href="imc.html">IMC</a>
+    </button>
+    <div>
+        Insira sua comidinha: <input type="text" id="comida" required>
+    </div><br>
+    Escolha um dia:
+    <select id="dia">
+        <option></option>
+        <option value="segunda">Segunda</option> // isso é um select para selecionar o dia da semana //
+        <option value="terca">Terça</option>
+        <option value="quarta">Quarta</option>
+        <option value="quinta">Quinta</option>
+        <option value="sexta">Sexta</option>
+        <option value="sabado">Sábado</option>
+        <option value="domingo">Domingo</option>
+    </select>
+    <br><br>
+    <div id="botoes">
+        <button id="btnExcluir">Excluir</button>
+        <button id="btnEditar">Editar</button>
+    </div>
+
+    <div id="saida">
+        <table id="tabela" border="0" width="100%" height="5%">
+            <tr>
+                <td width="30px"></td>
+                <td>Segunda</td>
+                <td>Terça</td>
+                <td>Quarta</td>
+                <td>Quinta</td>
+                <td>Sexta</td>
+                <td>Sábado</td>
+                <td>Domingo</td>
+            </tr>
+
+            <tr>
+                <td width="30px"></td>
+                <td id="segunda"></td>
+                <td id="terca"></td>
+                <td id="quarta"></td>
+                <td id="quinta"></td>
+                <td id="sexta"></td>
+                <td id="sabado"></td>
+                <td id="domingo"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        const BD = {
+            segunda: [],
+            terca: [],
+            quarta: [],
+            quinta: [],
+            sexta: [],
+            sabado: [],
+            domingo: []
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const comida = document.querySelector('#comida');
+            const dia = document.querySelector('#dia');
+            const btnExcluir = document.getElementById('btnExcluir');
+            const btnEditar = document.getElementById('btnEditar');
+
+            comida.addEventListener('keyup', function (event) {
+                if (event.key === 'Enter') {
+                    enviar(comida, dia);
+                }
+            });
+
+            btnExcluir.addEventListener('click', function () {
+                excluirItens();
+            });
+
+            btnEditar.addEventListener('click', function () {
+                editarItens(comida, dia);
+            });
+        });
+
+        function enviar(comida, dia) {
+            const produto = {
+                comida: comida.value,
+                dia: dia.value,
+                id: Date.now() 
+            };
+
+            BD[dia.value].push(produto);
+
+            let tabelaDia = document.getElementById(dia.value);
+            tabelaDia.innerHTML += `<tr><td><input type="checkbox" id="${produto.id}" onchange="verificar(this.id)"></td><td>${produto.comida}</td><td></td></tr><br>`;
+
+            console.log('A tecla "Enter" foi pressionada.');
+            console.log('Comida:', comida.value);
+            console.log('Dia:', dia.value);
+
+            console.log(BD);
+        }
+
+        function excluirItens() {
+            for (const diaSemana in BD) {
+                if (BD.hasOwnProperty(diaSemana)) {
+                    const diaArray = BD[diaSemana];
+                    for (let i = diaArray.length - 1; i >= 0; i--) {
+                        const elemento = document.getElementById(diaArray[i].id);
+                        if (elemento.checked) {
+                            diaArray.splice(i, 1); // Remove o item do array
+                        }
+                    }
+                }
+            }
+            montarTabela(); // Atualiza a tabela após a exclusão
+        }
+
+        function editarItens(comida, dia) {
+            for (const diaSemana in BD) {
+                if (BD.hasOwnProperty(diaSemana)) {
+                    const diaArray = BD[diaSemana];
+                    for (let i = 0; i < diaArray.length; i++) {
+                        const elemento = document.getElementById(diaArray[i].id);
+                        if (elemento.checked) {
+                            diaArray[i].comida = comida.value;
+                            diaArray[i].dia = dia.value;
+                            elemento.checked = false; // Desmarque o checkbox
+                        }
+                    }
+                }
+            }
+            montarTabela(); // Atualiza a tabela após a edição
+        }
+
+        function montarTabela() {
+            for (const diaSemana in BD) {
+                if (BD.hasOwnProperty(diaSemana)) {
+                    const diaArray = BD[diaSemana];
+                    const tabelaDia = document.getElementById(diaSemana);
+                    tabelaDia.innerHTML = ''; // Limpa a tabela
+
+                    diaArray.forEach((produto) => {
+                        tabelaDia.innerHTML += `<tr><td><input type="checkbox" id="${produto.id}" onchange="verificar(this.id)"></td><td>${produto.comida}</td><td></td></tr><br>`;
+                    });
+                }
+            }
+        }
+
+        function verificar(id) {
+            console.log('Checkbox com ID', id, 'foi alterado');
+        }
+    </script>
+</body>
+
+</html>

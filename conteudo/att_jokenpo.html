@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Pedra, Papel e Tesoura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .escolha {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .escolha h2 {
+            margin-bottom: 10px;
+        }
+
+        .escolha img {
+            width: 100px;
+            cursor: pointer;
+            margin: 5px;
+            border: 2px solid transparent;
+        }
+
+        .escolha img:hover {
+            border-color: #333;
+        }
+
+        .result {
+            font-size: 24px;
+            top: 200px;
+            left: 37%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo Pedra, Papel e Tesoura</h1>
+    <div class="container">
+        <div class="escolha">
+            <h2>Você</h2>
+            <img src="imagens/papel.png" alt="Papel" id="papel" onclick="play('papel')">
+            <img src="imagens/tesoura.png" alt="Tesoura" id="tesoura" onclick="play('tesoura')">
+            <img src="imagens/pedra.png" alt="Pedra" id="pedra" onclick="play('pedra')">
+        </div>
+        <div class="escolha">
+            <h2>Computador</h2>
+            <img src="imagens/papel.png" alt="Papel" id="papelc" >
+            <img src="imagens/tesoura.png" alt="Tesoura" id="tesourac" >
+            <img src="imagens/pedra.png" alt="Pedra" id="pedrac">
+        </div>
+    </div>
+    <div class="result">
+        <p>Esperando sua escolha...</p>
+    </div>
+
+    <script>
+        var escolhas = ["pedra", "papel", "tesoura"];
+
+        function play(escolhaUsuario) {
+            var computadorEscolha = escolhas[Math.floor(Math.random() * 3)];
+
+            var resultado = getResult(escolhaUsuario, computadorEscolha);
+
+            displayResult(escolhaUsuario, computadorEscolha, resultado);
+        }
+
+        function getResult(usuario, computador) {
+            if (usuario === computador) return "Empate";
+
+            if (
+                (usuario === "pedra" && computador === "tesoura") ||
+                (usuario === "papel" && computador === "pedra") ||
+                (usuario === "tesoura" && computador === "papel")
+            ) {
+                return "Você ganhou!";
+            } else {
+                return "Computador ganhou!";
+            }
+        }
+
+        function displayResult(usuario, computador, resultado) {
+            var resultadoDiv = document.querySelector(".result");
+            resultadoDiv.innerHTML = `Você escolheu ${usuario}.<br>Computador escolheu ${computador}.<br>${resultado}`;
+        }
+    </script>
+</body>
+</html>

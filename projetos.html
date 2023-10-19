@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: gray;
+            text-align: center; /* Centralizar o texto horizontalmente */
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .projects{
+            position: relative;
+            right: 45%;
+        }
+
+        .project-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .project {
+            margin: 10px;
+            text-align: center;
+            width: 200px; /* Defina a largura desejada */
+            height: auto; /* Defina a altura desejada (igual à largura para fazer um quadrado) */
+            background-color: #f0f0f0; /* Cor de fundo (opcional) */
+            text-align: center; /* Centralize o texto horizontalmente */
+            line-height: 20px; /* Centralize o texto verticalmente (ajuste de acordo com a altura) */
+            border-radius: 10%;
+            color: black;
+        }
+
+        .project a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .project p {
+            font-size: 14px;
+            color: black;
+        }
+
+        .project img {
+            width: 100px;
+        }
+
+        #voltar {
+            height: 50px;
+            width: 50px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html">
+            <img src="back_arrow_icon_134660.png" id="voltar">
+        </a>
+        
+        
+      <h1 class="projects">Projetos</h1>
+    </div>
+    <div class="project-container">
+        <div class="project">
+            <a href="conteudo/att_jokenpo.html">
+                <img src="jokempo.png" alt="jokempo">
+            </a>
+            <p>jokempo</p>
+            <p> este código cria uma página de jogo interativa de "Pedra, Papel e Tesoura". O usuário faz sua escolha clicando em uma das imagens, o computador escolhe aleatoriamente, e o resultado do jogo é exibido na página. É um exemplo simples de como HTML, CSS e JavaScript podem ser combinados para criar uma experiência interativa na web.</p>
+        </div>
+        <div class="project">
+            <a href="conteudo/index.html">
+                <img src="cardapio.gif" alt="cardapio">
+                <p>cardapio</p>
+                <p> este código oferece aos usuários a capacidade de criar um cardápio semanal, adicionar, editar e excluir itens alimentares, bem como monitorar sua alimentação ao longo dos dias da semana. É uma aplicação simples de gerenciamento de cardápio, usando HTML, CSS e JavaScript para interatividade.</p>
+            </a>
+        </div>
+        <div class="project">
+            <a href="conteudo/att1_sandra.html">
+                <img src="detran.webp" alt="cardapio">
+                <p>detran</p>
+                <p>este código cria uma calculadora de excesso de velocidade que fornece informações sobre penalidades com base na diferença entre a velocidade do carro e o limite de velocidade permitido. Ele também permite ao usuário inserir o nome do condutor e o número da habilitação para incluí-los na mensagem de resultado.</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
